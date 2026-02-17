@@ -1,0 +1,12 @@
+import socket
+
+def conectar_servidor(mensaje):
+    cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    cliente.connect(("localhost", 5000))
+    
+    cliente.send(mensaje.encode())
+    respuesta = cliente.recv(1024).decode()
+    
+    cliente.close()
+    
+    return respuesta
