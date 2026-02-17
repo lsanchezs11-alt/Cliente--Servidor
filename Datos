@@ -1,0 +1,5 @@
+# data/almacenamiento.py
+
+def guardar_log(mensaje):
+    with open("log.txt", "a") as archivo:
+        archivo.write(mensaje + "\n")
