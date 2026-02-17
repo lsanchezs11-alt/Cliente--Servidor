@@ -1,0 +1,18 @@
+import socket
+from logic.procesador import procesar_mensaje
+
+def iniciar_servidor():
+    servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    servidor.bind(("localhost", 5000))
+    servidor.listen(1)
+    
+    print("Servidor escuchando en puerto 5000...")
+    
+    while True:
+        cliente, direccion = servidor.accept()
+        mensaje = cliente.recv(1024).decode()
+        
+        respuesta = procesar_mensaje(mensaje)
+        cliente.send(respuesta.encode())
+        
+        cliente.close()
